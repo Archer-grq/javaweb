@@ -42,6 +42,12 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="password1" class="col-sm-3 control-label">确认密码</label>
+            <div class="col-sm-8">
+                <input type="password" class="form-control" id="password1" name="password1" placeholder="请再次输入密码">
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-2 ">
                 <a type="button" href="/" class="btn btn-default">返回首页</a>
             </div>

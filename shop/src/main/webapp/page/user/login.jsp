@@ -20,6 +20,15 @@
         <h1 class="text-center">欢迎会员登录</h1>
     </div>
     <div class="row">
+        <c:if test="${msg!=null}">
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                    ${msg}
+            </div>
+        </c:if>
         <c:if test="${message!=null}">
             <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert"

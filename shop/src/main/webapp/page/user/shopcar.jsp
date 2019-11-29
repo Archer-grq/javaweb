@@ -21,7 +21,7 @@
                             个人中心 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">个人资料</a></li>
+                            <li><a href="/user/update">修改密码</a></li>
                             <li><a href="#"></a></li>
                             <li><a href="/user/shopcar">购物车</a></li>
                             <li class="divider"></li>

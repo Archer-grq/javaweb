@@ -31,21 +31,31 @@ public class RegServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
         System.out.println();
         userService=new UserServiceImpl();
-        String username=req.getParameter("username");
-        String password=req.getParameter("password");
-        if(StringUtils.isNullOrEmpty(username)||StringUtils.isNullOrEmpty(password)){
+        String username=req.getParameter("username").trim();
+        String password=req.getParameter("password").trim();
+        String password1=req.getParameter("password1").trim();
 
-            req.setAttribute("message","账号或密码格式不对");
-            req.getRequestDispatcher("/page/reg.jsp").forward(req,resp);
+
+        if(StringUtils.isNullOrEmpty(username)||StringUtils.isNullOrEmpty(password)||StringUtils.isNullOrEmpty(password1)){
+
+            req.setAttribute("message","账号或密码格式不正确");
+            req.getRequestDispatcher("/page/user/reg.jsp").forward(req,resp);
         }else {
-            BaseResult<User> baseResult=userService.userReg(username,password);
-            req.setAttribute("message",baseResult.getMessage());
-            if(baseResult.getStatus()==200){
-                //注册成功
-                req.getRequestDispatcher("/page/user/login.jsp").forward(req,resp);
-            }else {
-                //注册失败
+
+            if(!password.equals(password1)){
+                //两次密码不一致
+                req.setAttribute("message","两次密码不一致");
                 req.getRequestDispatcher("/page/user/reg.jsp").forward(req,resp);
+            }else {
+                BaseResult<User> baseResult=userService.userReg(username,password);
+                req.setAttribute("message",baseResult.getMessage());
+                if(baseResult.getStatus()==200){
+                    //注册成功
+                    req.getRequestDispatcher("/page/user/login.jsp").forward(req,resp);
+                }else {
+                    //注册失败
+                    req.getRequestDispatcher("/page/user/reg.jsp").forward(req,resp);
+                }
             }
         }
 

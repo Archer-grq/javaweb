@@ -23,6 +23,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="/user/shopcar">购物车</a></li>
                             <c:if test="${sessionScope.userName!=null}">
+                                <li><a href="/user/update">修改密码</a></li>
                                 <li class="divider"></li>
                                 <li><a href="/user/out">退出</a></li>
                             </c:if>

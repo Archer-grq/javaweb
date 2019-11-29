@@ -13,6 +13,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
     <option name="GROUP_DATA_SOURCES" value="true" />
@@ -62,6 +65,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/grq/dao/impl/UserDaoImpl.java" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="JRebelWorkspace">
+    <option name="jrebelEnabledAutocompile" value="true" />
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -75,6 +81,7 @@
         <option name="alwaysUpdateSnapshots" value="true" />
         <option name="localRepository" value="F:\JAVAimport\IDEAimport\apache-maven-3.6.1\repo" />
         <option name="mavenHome" value="F:/JAVAimport/IDEAimport/apache-maven-3.6.1" />
+        <option name="usePluginRegistry" value="true" />
         <option name="userSettingsFile" value="F:\JAVAimport\IDEAimport\apache-maven-3.6.1\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -84,13 +91,13 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/example" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -281,6 +288,14 @@
       <workItem from="1573643311973" duration="9800000" />
       <workItem from="1573782880852" duration="2022000" />
       <workItem from="1574232304620" duration="2472000" />
+      <workItem from="1574585462325" duration="509000" />
+      <workItem from="1574672006128" duration="22000" />
+      <workItem from="1574839983552" duration="76000" />
+      <workItem from="1574992562357" duration="3531000" />
+      <workItem from="1574996156576" duration="2513000" />
+      <workItem from="1575000825262" duration="630000" />
+      <workItem from="1575001502195" duration="40000" />
+      <workItem from="1575001569608" duration="10000" />
     </task>
     <servers />
   </component>
@@ -291,6 +306,10 @@
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="req.getRequestURI()" language="JAVA" />
+        <watch expression="req.getParameter(&quot;id&quot;)" language="JAVA" />
+        <watch expression="req.getParameter(&quot;name&quot;)" language="JAVA" />
+        <watch expression="req.getParameter(&quot;oldPassword&quot;)" language="JAVA" />
+        <watch expression="req.getParameter(&quot;newPassword&quot;)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

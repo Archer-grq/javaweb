@@ -153,5 +153,30 @@ public class UserDaoImpl implements UserDao {
         return value;
     }
 
+    @Override
+    public int update(int id, String password) {
+        int value=0;
+        try {
+            connection= JdbcUtil.getConnection();
+            String sql="update user set password=? where id =?";
+            ps=connection.prepareStatement(sql);
+            ps.setString(1,password);
+            ps.setInt(2,id);
+
+            value=ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }finally {
+            JdbcUtil.close(ps,connection);
+        }
+        return value;
+    }
+
 
 }

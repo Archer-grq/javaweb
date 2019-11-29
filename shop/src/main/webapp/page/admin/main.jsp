@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>用户管理</title>
+    <title>商品管理系统</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
@@ -29,15 +29,10 @@
 
         </div>
         <div class="row">
-            <c:if test="${message!=null}">
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert"
-                            aria-hidden="true">
-                        &times;
-                    </button>
-                        ${message}
-                </div>
-            </c:if>
+            <div class="container">
+                <h1 class="col-sm-5 col-sm-offset-3">欢迎登录商品管理系统</h1>
+            </div>
+
         </div>
 
     </div>

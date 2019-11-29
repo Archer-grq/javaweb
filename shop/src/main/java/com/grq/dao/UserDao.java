@@ -15,4 +15,6 @@ public interface UserDao {
     List<User> selectAll();
 
     int userDeleteByID(int id);
+
+    int update(int id,String password);
 }

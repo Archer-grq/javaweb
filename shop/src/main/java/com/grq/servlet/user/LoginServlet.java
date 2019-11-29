@@ -36,7 +36,8 @@ public class LoginServlet extends HttpServlet {
             resp.sendRedirect("/");
         }else{
             //登陆失败
-            resp.sendRedirect("/user/login");
+            req.setAttribute("msg","账号或密码错误");
+            req.getRequestDispatcher("/page/user/login.jsp").forward(req,resp);
         }
     }
 }
