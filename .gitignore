@@ -1,0 +1,43 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+## STS ##
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+## IntelliJ IDEA ##
+.idea
+*.iws
+*.iml
+*.ipr
+
+## JRebel ##
+rebel.xml
+
+## MAC ##
+.DS_Store
+
+## Other ##
+logs/
+temp/
+.DS_Store
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+tests/**/coverage/
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
