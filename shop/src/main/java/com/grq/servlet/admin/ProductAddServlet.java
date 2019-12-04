@@ -82,14 +82,14 @@ public class ProductAddServlet extends HttpServlet {
                     String filePath = serverpath+File.separator+filename;
                     //写入文件
                     img.write(filePath);
-
+					
                     //写到项目里一份
                     try {
                         FileIO.fileIO(serverpath,filename,StaticString.programImgPath,filename);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
+					
                     Product product =new Product(pname,pvalue,filename,cid,describe);
                     BaseResult<Product> baseResult = productService.addProduct(product);
                     if(baseResult.getStatus()==200){

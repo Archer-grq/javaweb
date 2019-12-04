@@ -18,10 +18,10 @@ com\grq\bean\Product.class
 com\grq\bean\User.class
 com\grq\util\StaticString.class
 com\grq\util\FileIO.class
+com\grq\servlet\user\UserUpdateServlet.class
 com\grq\service\impl\ShopCharServiceImpl.class
 com\grq\service\impl\UserServiceImpl.class
 com\grq\dao\impl\ProductClassDaoImpl.class
-test\Main.class
 com\grq\bean\BaseResult.class
 com\grq\filter\AdminFilter.class
 com\grq\dao\AdminDao.class
@@ -32,6 +32,7 @@ com\grq\servlet\ProductServlet.class
 com\grq\dto\SCWithP.class
 com\grq\dao\UserDao.class
 com\grq\dao\ProductDao.class
+com\grq\servlet\admin\PduDeleteServlet.class
 com\grq\servlet\admin\ProductInfoServlet.class
 com\grq\dao\impl\AdminDaoImpl.class
 com\grq\service\impl\AdminServiceImpl.class
@@ -44,5 +45,6 @@ com\grq\dao\ProductClassDao.class
 com\grq\bean\ProductClass.class
 com\grq\servlet\IndexServlet.class
 com\grq\servlet\user\ShopCarServlet.class
+com\grq\servlet\user\UserOutServlet.class
 com\grq\dao\ShopCarDao.class
 com\grq\util\JdbcUtil.class
