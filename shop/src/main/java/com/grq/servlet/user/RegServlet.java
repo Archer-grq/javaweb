@@ -3,7 +3,6 @@ package com.grq.servlet.user;
 import com.grq.bean.BaseResult;
 import com.grq.bean.User;
 import com.grq.service.UserService;
-import com.grq.service.impl.UserServiceImpl;
 import com.mysql.cj.util.StringUtils;
 
 import javax.servlet.ServletException;
@@ -16,7 +15,7 @@ import java.io.IOException;
 @WebServlet("/user/reg")
 public class RegServlet extends HttpServlet {
 
-    private UserService userService;
+	private UserService userService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,7 +29,7 @@ public class RegServlet extends HttpServlet {
         //设置响应编码格式
         resp.setContentType("text/html;charset=utf-8");
         System.out.println();
-        userService=new UserServiceImpl();
+        userService=new UserService();
         String username=req.getParameter("username").trim();
         String password=req.getParameter("password").trim();
         String password1=req.getParameter("password1").trim();

@@ -2,7 +2,6 @@ package com.grq.servlet.admin;
 
 import com.grq.bean.User;
 import com.grq.service.UserService;
-import com.grq.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +14,10 @@ import java.util.List;
 @WebServlet("/admin/userInfo")
 public class UserInfoServlet extends HttpServlet {
 
-    @Override
+	@Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UserService userService=new UserServiceImpl();
+        UserService userService=new UserService();
        List<User> userList =userService.selectAll();
        if(userList!=null){
            req.setAttribute("userList",userList);

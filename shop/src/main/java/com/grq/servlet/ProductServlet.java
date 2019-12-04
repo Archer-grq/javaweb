@@ -2,7 +2,6 @@ package com.grq.servlet;
 
 import com.grq.bean.Product;
 import com.grq.service.ProductService;
-import com.grq.service.impl.ProductServiceImpl;
 import com.grq.util.StaticString;
 import com.mysql.cj.util.StringUtils;
 
@@ -15,11 +14,11 @@ import java.io.IOException;
 
 @WebServlet("/product")
 public class ProductServlet extends HttpServlet {
-    private ProductService productService=null;
+	private ProductService productService=null;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        productService=new ProductServiceImpl();
+        productService=new ProductService();
         String pid1 = req.getParameter("pid");
         if(StringUtils.isNullOrEmpty(pid1)){
             resp.sendRedirect("/");

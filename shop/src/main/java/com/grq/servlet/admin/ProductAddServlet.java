@@ -6,8 +6,6 @@ import com.grq.bean.Product;
 import com.grq.bean.ProductClass;
 import com.grq.service.ProductClassService;
 import com.grq.service.ProductService;
-import com.grq.service.impl.ProductClassServiceImpl;
-import com.grq.service.impl.ProductServiceImpl;
 import com.grq.util.FileIO;
 import com.grq.util.StaticString;
 import com.mysql.cj.util.StringUtils;
@@ -26,14 +24,15 @@ import java.util.UUID;
 @MultipartConfig
 @WebServlet("/admin/product/add")
 public class ProductAddServlet extends HttpServlet {
-    private ProductService productService=null;
+	
+	private ProductService productService=null;
     private ProductClassService productClassService=null;
 
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        productClassService=new ProductClassServiceImpl();
+        productClassService=new ProductClassService();
         String msg =req.getParameter("msg");
         if(!StringUtils.isNullOrEmpty(msg)){
             req.setAttribute("msg",msg);
@@ -46,7 +45,7 @@ public class ProductAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        productService =new ProductServiceImpl();
+        productService =new ProductService();
         String strPvalue=req.getParameter("pvalue");
         String describe=req.getParameter("describe").trim().replaceAll("\r\n", " ");
         String pname=req.getParameter("pname");
@@ -80,21 +79,24 @@ public class ProductAddServlet extends HttpServlet {
                     //随机的生存一个32的字符串
                     String filename = UUID.randomUUID()+suffix;
                     String filePath = serverpath+File.separator+filename;
-                    //写入文件
-                    img.write(filePath);
-					
-                    //写到项目里一份
-                    try {
-                        FileIO.fileIO(serverpath,filename,StaticString.programImgPath,filename);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-					
+
                     Product product =new Product(pname,pvalue,filename,cid,describe);
                     BaseResult<Product> baseResult = productService.addProduct(product);
                     if(baseResult.getStatus()==200){
                         //成功
+                        //成功后才保存图片
+                        //写入文件
+                        img.write(filePath);
+
+                        //写到项目里一份
+                        try {
+                            FileIO.fileIO(serverpath,filename,StaticString.programImgPath,filename);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                         resp.sendRedirect("/admin/product/add?msg=200");
+
                     }else{
                         //失败
                         resp.sendRedirect("/admin/product/add?msg=500");

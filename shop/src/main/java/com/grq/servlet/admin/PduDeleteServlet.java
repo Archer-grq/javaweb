@@ -3,7 +3,6 @@ package com.grq.servlet.admin;
 import com.grq.bean.BaseResult;
 import com.grq.bean.Product;
 import com.grq.service.ProductService;
-import com.grq.service.impl.ProductServiceImpl;
 import com.grq.util.StaticString;
 
 import javax.servlet.ServletException;
@@ -16,11 +15,11 @@ import java.io.IOException;
 
 @WebServlet("/admin/pdu/delete")
 public class PduDeleteServlet extends HttpServlet {
-    private ProductService productService=null;
+	private ProductService productService=null;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        productService=new ProductServiceImpl();
+        productService=new ProductService();
         int id=Integer.parseInt(req.getParameter("id"));
         Product p = productService.getById(id);
         String img =p.getPimg();
@@ -28,11 +27,11 @@ public class PduDeleteServlet extends HttpServlet {
         if(baseResult.getStatus()==200){
             File file=new File(StaticString.programPath+StaticString.UPLOAD_FILE+File.separator+img);
             if(file.exists()&&file.isFile()){
-                boolean delete = file.delete();
+                file.delete();
             }
             File file1=new File(req.getServletContext().getRealPath(StaticString.UPLOAD_FILE)+File.separator+img);
             if(file1.exists()&&file1.isFile()){
-                boolean delete = file1.delete();
+                file1.delete();
             }
         }
         resp.sendRedirect("/admin/pduList");

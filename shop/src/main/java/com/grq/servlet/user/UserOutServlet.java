@@ -11,7 +11,8 @@ import java.io.IOException;
 @WebServlet("/user/out")
 public class UserOutServlet extends HttpServlet {
 
-    @Override
+
+	@Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session =req.getSession();
         session.removeAttribute("userId");

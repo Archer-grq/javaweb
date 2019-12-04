@@ -1,8 +1,6 @@
 package com.grq.servlet.admin;
 
 import com.grq.service.UserService;
-import com.grq.service.impl.UserServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +11,10 @@ import java.io.IOException;
 @WebServlet("/admin/delete")
 public class UserDeleteServlet extends HttpServlet {
 
-    @Override
+
+	@Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService=new UserServiceImpl();
+        UserService userService=new UserService();
         int id =Integer.parseInt(req.getParameter("id"));
         int i=userService.deleteUser(id);
         if(i==1){

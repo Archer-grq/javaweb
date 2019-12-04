@@ -2,7 +2,6 @@ package com.grq.servlet.admin;
 
 import com.grq.bean.Admin;
 import com.grq.service.AdminService;
-import com.grq.service.impl.AdminServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +14,7 @@ import java.io.IOException;
 @WebServlet("/admin/login")
 public class AdminLoginServlet extends HttpServlet {
 
-    private AdminService adminService;
+	private AdminService adminService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,7 +23,7 @@ public class AdminLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        adminService =new AdminServiceImpl();
+        adminService =new AdminService();
 
         String name=req.getParameter("name");
         String password=req.getParameter("pwd");

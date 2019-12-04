@@ -40,12 +40,12 @@
                     </div>
                 </c:if>
                 <c:if test="${msg!=null}">
-                    <div class="alert ${msg.equals("200")?"alert-success":"alert-danger"} alert-dismissable">
+                    <div class="alert ${param.msg.equals("200")?"alert-success":"alert-danger"} alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert"
                                 aria-hidden="true">
                             &times;
                         </button>
-                            ${msg.equals("200")?"发布成功":"发布失败"}
+                            ${param.msg.equals("200")?"发布成功":"发布失败"}
                     </div>
                 </c:if>
 

@@ -2,7 +2,6 @@ package com.grq.servlet.user;
 
 import com.grq.bean.User;
 import com.grq.service.UserService;
-import com.grq.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +14,7 @@ import java.io.IOException;
 @WebServlet("/user/login")
 public class LoginServlet extends HttpServlet {
 
-    private UserService userService;
+	private UserService userService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        userService =new UserServiceImpl();
+        userService =new UserService();
         String name=req.getParameter("username");
         String password=req.getParameter("password");
         User u=userService.userLogin(name,password);

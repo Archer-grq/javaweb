@@ -6,7 +6,24 @@ public class ShopCar implements Serializable {
     private int id;
     private int uid;
     private int pid;
-    private int num;
+    private int pnum;
+
+
+    public ShopCar(int id, int uid, int pid, int pnum) {
+        this.id = id;
+        this.uid = uid;
+        this.pid = pid;
+        this.pnum = pnum;
+    }
+
+    public ShopCar() {
+    }
+
+    public ShopCar(int uid, int pid, int pnum) {
+        this.uid = uid;
+        this.pid = pid;
+        this.pnum = pnum;
+    }
 
     @Override
     public String toString() {
@@ -14,7 +31,7 @@ public class ShopCar implements Serializable {
                 "id=" + id +
                 ", uid=" + uid +
                 ", pid=" + pid +
-                ", num=" + num +
+                ", pnum=" + pnum +
                 '}';
     }
 
@@ -42,27 +59,11 @@ public class ShopCar implements Serializable {
         this.pid = pid;
     }
 
-    public int getNum() {
-        return num;
+    public int getPnum() {
+        return pnum;
     }
 
-    public void setNum(int num) {
-        this.num = num;
-    }
-
-    public ShopCar() {
-    }
-
-    public ShopCar(int uid, int pid, int num) {
-        this.uid = uid;
-        this.pid = pid;
-        this.num = num;
-    }
-
-    public ShopCar(int id, int uid, int pid, int num) {
-        this.id = id;
-        this.uid = uid;
-        this.pid = pid;
-        this.num = num;
+    public void setPnum(int pnum) {
+        this.pnum = pnum;
     }
 }

@@ -4,8 +4,6 @@ import com.grq.bean.Product;
 import com.grq.bean.ProductClass;
 import com.grq.service.ProductClassService;
 import com.grq.service.ProductService;
-import com.grq.service.impl.ProductClassServiceImpl;
-import com.grq.service.impl.ProductServiceImpl;
 import com.grq.util.StaticString;
 
 import javax.servlet.ServletException;
@@ -14,18 +12,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @WebServlet("")
 public class IndexServlet extends HttpServlet {
-    ProductClassService pcs=null;
-    ProductService ps=null;
+	
+	
+	private ProductClassService pcs=null;
+    private ProductService ps=null;
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        pcs=new ProductClassServiceImpl();
-        ps=new ProductServiceImpl();
+        pcs=new ProductClassService();
+        ps=new ProductService();
 
 
         List<ProductClass> pcList = pcs.getAll();

@@ -2,9 +2,8 @@ package com.grq.servlet.user;
 
 import com.grq.bean.BaseResult;
 import com.grq.bean.ShopCar;
-import com.grq.dto.SCWithP;
+import com.grq.bean.dto.SCWithP;
 import com.grq.service.ShopCarService;
-import com.grq.service.impl.ShopCharServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +16,11 @@ import java.util.List;
 
 @WebServlet("/user/shopcar")
 public class ShopCarServlet extends HttpServlet {
-    ShopCarService shopCarService=null;
+ 
+	ShopCarService shopCarService=null;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        shopCarService=new ShopCharServiceImpl();
+        shopCarService=new ShopCarService();
         HttpSession session=req.getSession();
         Integer userId = (Integer)session.getAttribute("userId");
 
@@ -37,7 +37,7 @@ public class ShopCarServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        shopCarService=new ShopCharServiceImpl();
+        shopCarService=new ShopCarService();
         int uid=Integer.parseInt(req.getParameter("uid"));
         int pid=Integer.parseInt(req.getParameter("pid"));
         String strNum=req.getParameter("pnum");

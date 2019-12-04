@@ -2,7 +2,6 @@ package com.grq.servlet.user;
 
 import com.grq.bean.User;
 import com.grq.service.UserService;
-import com.grq.service.impl.UserServiceImpl;
 import com.mysql.cj.util.StringUtils;
 
 import javax.servlet.ServletException;
@@ -14,7 +13,8 @@ import java.io.IOException;
 
 @WebServlet("/user/update")
 public class UserUpdateServlet extends HttpServlet {
-    private UserService userService;
+  
+	private UserService userService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class UserUpdateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        userService=new UserServiceImpl();
+        userService=new UserService();
 
         //获取表单信息
         int id=Integer.parseInt(req.getParameter("id").trim());

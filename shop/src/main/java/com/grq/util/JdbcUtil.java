@@ -1,7 +1,10 @@
 package com.grq.util;
 
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -13,6 +16,10 @@ public class JdbcUtil {
     private static String user = null;
     private static String password = null;
     private static String driverClass = null;
+
+    private static Connection connection=null;
+    private static ResultSet rs=null;
+    private static PreparedStatement ps=null;
 
     /**
      * 静态代码块中（只加载一次）
@@ -78,4 +85,245 @@ public class JdbcUtil {
 
         }
     }
+
+
+    /**
+     *查询所有
+     * 要求 ：实体类字段名与 数据库字段 一一对应
+     *
+     * @param c Class 对象
+     * @param <T> 返回要返回的类型
+     * @return T
+     */
+    public static <T> List<T> selectALL(Class<T> c){
+        List<T> list=new ArrayList<>();
+        try {
+            connection= getConnection();
+            String sql="select * from "+c.getSimpleName().toLowerCase();
+            ps=connection.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                T t = c.getConstructor().newInstance();
+                Field[] fields = c.getDeclaredFields();
+                for(Field field :fields){
+                    field.setAccessible(true);
+                    field.set(t,rs.getObject(field.getName().toLowerCase(),field.getType()));
+                }
+                list.add(t);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            close(rs,ps,connection);
+        }
+        return list;
+    }
+
+
+    /**
+     * 根据 自定义 sql 语句进行查询
+     * 要求 ：实体类字段名与 数据库字段 一一对应
+     *
+     * @param sql SQL语句 必须是 prepareStatement 要用到的sql类型
+     * @param objects 参数列表
+     * @param returnClass  返回值类型的 Class 对象
+     * @param <T> 返回值类型
+     * @return List<T>
+     */
+    public static <T> List<T> select(String sql,Object[] objects,Class<T> returnClass){
+
+        List<T> list=new ArrayList<>();
+        try {
+            connection= getConnection();
+            ps=connection.prepareStatement(sql);
+            for(int i=1;i<=objects.length;i++){
+                ps.setObject(i, objects[i-1]);
+            }
+            rs=ps.executeQuery();
+            while (rs.next()){
+                T t = returnClass.getConstructor().newInstance();
+                Field[] fields = returnClass.getDeclaredFields();
+                for(Field field :fields){
+                    field.setAccessible(true);
+                    field.set(t,rs.getObject(field.getName().toLowerCase(),field.getType()));
+                }
+                list.add(t);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            close(rs,ps,connection);
+        }
+        return list;
+    }
+
+    /**
+     * 插入数据 插到与实体类对应的表中
+     * 要求 ：实体类字段名与 数据库字段 一一对应
+     *
+     *
+     * @param t 要插入的数据
+     * @param tClass 实体类 Class 对象
+     * @param <T> 实体类型
+     * @return int
+     */
+    public static <T> int insert(T t, Class<T> tClass){
+        int result = 0;
+        try {
+            connection= getConnection();
+            StringBuilder sql= new StringBuilder("insert into ");
+            sql.append(tClass.getSimpleName().toLowerCase()).append(" (");
+
+            Field[] fields = tClass.getDeclaredFields();
+            for(int i=0;i<fields.length;i++){
+                sql.append(fields[i].getName().toLowerCase()).append(',');
+            }
+            sql.deleteCharAt(sql.length()-1);
+            sql.append(") values (");
+            for(int i=0;i<fields.length;i++){
+                sql.append('?').append(',');
+            }
+            sql.deleteCharAt(sql.length()-1);
+            sql.append(')');
+
+            ps=connection.prepareStatement(sql.toString());
+            for(int i=1;i<=fields.length;i++){
+                fields[i-1].setAccessible(true);
+                ps.setObject(i,fields[i-1].get(t));
+            }
+            result = ps.executeUpdate();
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            close(ps,connection);
+        }
+        return result;
+    }
+
+
+    /**
+     * 插入数据 插到 tableName 表中
+     * 要求 ：实体类字段名与 数据库字段 一一对应
+     *
+     *
+     * @param tableName 表名
+     * @param t 实体类
+     * @param tClass 实体类的 Class 对象
+     * @param <T> 实体类型
+     * @return int
+     */
+    public static <T> int insert(String tableName ,T t, Class<T> tClass){
+        int result = 0;
+        try {
+            connection= getConnection();
+            StringBuilder sql= new StringBuilder("insert into ");
+            sql.append(tableName.toLowerCase()).append(" (");
+
+            Field[] fields = tClass.getDeclaredFields();
+            for(int i=0;i<fields.length;i++){
+                if(fields[i].getName().toLowerCase().equals("describe")){
+                    sql.append('`').append(fields[i].getName().toLowerCase()).append('`').append(',');
+                }else{
+                    sql.append(fields[i].getName().toLowerCase()).append(',');
+                }
+            }
+            sql.deleteCharAt(sql.length()-1);
+            sql.append(") values (");
+            for(int i=0;i<fields.length;i++){
+                sql.append('?').append(',');
+            }
+            sql.deleteCharAt(sql.length()-1);
+            sql.append(')');
+
+            ps=connection.prepareStatement(sql.toString());
+            for(int i=1;i<=fields.length;i++){
+                fields[i-1].setAccessible(true);
+                ps.setObject(i,fields[i-1].get(t));
+            }
+            result = ps.executeUpdate();
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            close(ps,connection);
+        }
+        return result;
+    }
+
+
+    /**
+     * 插入数据 拥堵自定义 sql
+     * @param sql sql语句
+     * @param objects 参数列表
+     * @return int
+     */
+    public static int insert(String sql,Object[] objects){
+        int result = 0;
+        try {
+            connection= getConnection();
+            ps=connection.prepareStatement(sql.toString());
+            for(int i=0;i<objects.length;i++){
+                ps.setObject(i+1,objects[i]);
+            }
+            result = ps.executeUpdate();
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            close(ps,connection);
+        }
+        return result;
+    }
+
+    /**
+     * 更新数据
+     * @param sql SQL语句
+     * @param objects 参数列表
+     * @return int
+     */
+    public static int update(String sql,Object[] objects){
+        int result = 0;
+        try {
+            connection= getConnection();
+            ps=connection.prepareStatement(sql.toString());
+            for(int i=0;i<objects.length;i++){
+                ps.setObject(i+1,objects[i]);
+            }
+            result = ps.executeUpdate();
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            close(ps,connection);
+        }
+        return result;
+    }
+
+    /**
+     * 删除数据
+     * @param sql SQL语句
+     * @param objects 参数列表
+     * @return int
+     */
+    public static int delete(String sql,Object[] objects){
+        int result = 0;
+        try {
+            connection= getConnection();
+            ps=connection.prepareStatement(sql.toString());
+            for(int i=0;i<objects.length;i++){
+                ps.setObject(i+1,objects[i]);
+            }
+            result = ps.executeUpdate();
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            close(ps,connection);
+        }
+        return result;
+    }
+
+
+
 }

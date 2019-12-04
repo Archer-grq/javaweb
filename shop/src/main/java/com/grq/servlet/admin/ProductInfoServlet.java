@@ -1,9 +1,7 @@
 package com.grq.servlet.admin;
 
-import com.grq.bean.Product;
-import com.grq.dto.PduWithC;
+import com.grq.bean.dto.PduWithC;
 import com.grq.service.ProductService;
-import com.grq.service.impl.ProductServiceImpl;
 import com.grq.util.StaticString;
 
 import javax.servlet.ServletException;
@@ -17,11 +15,11 @@ import java.util.List;
 @WebServlet("/admin/pduList")
 public class ProductInfoServlet extends HttpServlet {
 
-    private ProductService productService;
+	private ProductService productService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        productService=new ProductServiceImpl();
+        productService=new ProductService();
         List<PduWithC> productList = productService.showPdus();
 
         for (PduWithC p : productList) {

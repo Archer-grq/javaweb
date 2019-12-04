@@ -66,7 +66,7 @@
             <div class="col-sm-4 col-sm-offset-4">
                 <label class="tv"><span style="color:#6c757d ;font-size: 15px;margin-right: 20px">总价</span><i>￥</i>${totalMoney}</label>
             </div>
-            <a href="#" id="buy" class="col-sm-2">立即购买</a>
+            <a href="/user/buy" id="buy" class="col-sm-2">立即购买</a>
         </div>
     </div>
 </div>
