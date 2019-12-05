@@ -7,7 +7,7 @@ import com.grq.bean.ProductClass;
 import com.grq.service.ProductClassService;
 import com.grq.service.ProductService;
 import com.grq.util.FileIO;
-import com.grq.util.StaticString;
+import com.grq.util.ReadConfig;
 import com.mysql.cj.util.StringUtils;
 
 import javax.servlet.ServletException;
@@ -62,7 +62,7 @@ public class ProductAddServlet extends HttpServlet {
             if(!StringUtils.isNullOrEmpty(pname)){
                 int cid= Integer.parseInt(req.getParameter("cid"));
                 //获得服务器目录
-                String serverpath = req.getServletContext().getRealPath(StaticString.UPLOAD_FILE);
+                String serverpath = req.getServletContext().getRealPath(ReadConfig.server_upload_img_path);
                 //如果存储图片的文件夹不存在则创建
                 File path = new File(serverpath);
                 if (!path.exists()){
@@ -78,7 +78,7 @@ public class ProductAddServlet extends HttpServlet {
                     String suffix = imgName.substring(imgName.lastIndexOf("."));
                     //随机的生存一个32的字符串
                     String filename = UUID.randomUUID()+suffix;
-                    String filePath = serverpath+File.separator+filename;
+                    String filePath = serverpath+ReadConfig.separator+filename;
 
                     Product product =new Product(pname,pvalue,filename,cid,describe);
                     BaseResult<Product> baseResult = productService.addProduct(product);
@@ -90,7 +90,7 @@ public class ProductAddServlet extends HttpServlet {
 
                         //写到项目里一份
                         try {
-                            FileIO.fileIO(serverpath,filename,StaticString.programImgPath,filename);
+                            FileIO.fileIO(serverpath,filename,ReadConfig.program_img_path,filename);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -109,8 +109,6 @@ public class ProductAddServlet extends HttpServlet {
                 resp.sendRedirect("/admin/product/add?msg=500");
             }
         }
-
-
 
     }
 

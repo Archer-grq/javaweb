@@ -3,7 +3,7 @@ package com.grq.servlet.admin;
 import com.grq.bean.BaseResult;
 import com.grq.bean.Product;
 import com.grq.service.ProductService;
-import com.grq.util.StaticString;
+import com.grq.util.ReadConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,11 +25,11 @@ public class PduDeleteServlet extends HttpServlet {
         String img =p.getPimg();
         BaseResult<Product> baseResult = productService.deleteById(id);
         if(baseResult.getStatus()==200){
-            File file=new File(StaticString.programPath+StaticString.UPLOAD_FILE+File.separator+img);
+            File file=new File(ReadConfig.program_img_path+ReadConfig.separator+img);
             if(file.exists()&&file.isFile()){
                 file.delete();
             }
-            File file1=new File(req.getServletContext().getRealPath(StaticString.UPLOAD_FILE)+File.separator+img);
+            File file1=new File(req.getServletContext().getRealPath(ReadConfig.server_upload_img_path)+ReadConfig.separator+img);
             if(file1.exists()&&file1.isFile()){
                 file1.delete();
             }

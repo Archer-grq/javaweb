@@ -3,44 +3,24 @@
 <html>
 <head>
     <title>商品管理系统</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <jsp:include page="/page/includes/head.jsp"/>
 </head>
 <body>
 <div style="padding:0 50px">
-    <div style="float: left;width: 15%">
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="">主页</a></li>
-            <li ><a href="/admin/userInfo">用户管理</a></li>
-            <li><a href="/admin/pduList">商品管理</a></li>
-            <li><a href="/admin/product/add">商品发布</a></li>
-            <li><a href="/admin/signOut">退出</a></li>
-        </ul>
-    </div>
+    <jsp:include page="/page/includes/adminNav.jsp">
+        <jsp:param name="index" value="0"/>
+    </jsp:include>
     <div style="float: left;width: 85%;">
-        <div style="height: 50px;background-color: #cccccc;width: 100%; margin-bottom: 40px;">
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-4" style="height: 100%; text-align: center; line-height: 50px;">
-                    <b>主页</b>
-                </div>
-                <div class="col-sm-2 col-sm-offset-2" style="height: 100%; text-align: center; line-height: 50px;">
-                    用户名：${sessionScope.adminName}
-                </div>
-            </div>
-
-        </div>
+        <jsp:include page="/page/includes/adminTop.jsp">
+            <jsp:param name="topname" value="主页"/>
+        </jsp:include>
         <div class="row">
             <div class="container">
                 <h1 class="col-sm-5 col-sm-offset-3">欢迎登录商品管理系统</h1>
             </div>
-
         </div>
-
     </div>
-
 </div>
-
-
-<script src="/js/jquery-3.4.1.min.js "></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
+<jsp:include page="/page/includes/head.jsp"/>
 </body>
 </html>

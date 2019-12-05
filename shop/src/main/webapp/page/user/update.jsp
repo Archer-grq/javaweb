@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>修改密码</title>
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    <jsp:include page="/page/includes/head.jsp"/>
     <style>
 
         #body{
@@ -75,10 +75,5 @@
         </div>
     </form>
 </div>
-
-
-
-<script src="../../js/jquery-3.4.1.min.js "></script>
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

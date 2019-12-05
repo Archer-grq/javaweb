@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>用户管理</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <jsp:include page="/page/includes/head.jsp"/>
     <style>
         #modal-body{
             height: 400px;
@@ -12,31 +12,14 @@
 </head>
 <body>
 <div style="padding:0 50px">
-    <div style="float: left;width: 15%">
-        <ul class="nav nav-pills nav-stacked">
-            <li ><a href="/admin/main">主页</a></li>
-            <li ><a href="/admin/userInfo">用户管理</a></li>
-            <li class="active"><a href="">商品管理</a></li>
-            <li><a href="/admin/product/add">商品发布</a></li>
-            <li><a href="/admin/signOut">退出</a></li>
-        </ul>
-    </div>
+    <jsp:include page="/page/includes/adminNav.jsp">
+        <jsp:param name="index" value="2"/>
+    </jsp:include>
     <div style="float: left;width: 85%;">
-        <div style="height: 50px;background-color: #cccccc;width: 100%; margin-bottom: 40px;">
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-4" style="height: 100%; text-align: center; line-height: 50px;">
-                    <b>商品管理</b>
-                </div>
-                <div class="col-sm-2 col-sm-offset-2" style="height: 100%; text-align: center; line-height: 50px;">
-                    用户名：${sessionScope.adminName}
-                </div>
-            </div>
-
-        </div>
+        <jsp:include page="/page/includes/adminTop.jsp">
+            <jsp:param name="topname" value="商品管理"/>
+        </jsp:include>
         <div class="col-sm-10 col-sm-offset-1">
-            <div class="row">
-
-            </div>
             <div class="row">
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
@@ -64,10 +47,7 @@
                 </table>
             </div>
         </div>
-
-
     </div>
-
 </div>
 
 <!-- 模态框（Modal） -->
@@ -136,13 +116,8 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-<script src="/js/jquery-3.4.1.min.js "></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
 <script>
-
     function showModal(id,pname,cname,pvalue,img,describe){
-
         $('#pname').html(pname);
         $('#pid').html(id);
         $('#pvalue').html(pvalue);
@@ -150,11 +125,7 @@
         $('#cname').html(cname);
         $('#describe').html(describe);
         $('#myModal').modal('show')
-
     }
-
-
-
 </script>
 </body>
 </html>

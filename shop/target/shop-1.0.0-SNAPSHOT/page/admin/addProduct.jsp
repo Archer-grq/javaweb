@@ -3,31 +3,17 @@
 <html>
 <head>
     <title>用户管理</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <jsp:include page="/page/includes/head.jsp"/>
 </head>
 <body>
 <div style="padding:0 50px">
-    <div style="float: left;width: 15%">
-        <ul class="nav nav-pills nav-stacked">
-            <li><a href="/admin/">主页</a></li>
-            <li ><a href="/admin/userInfo">用户管理</a></li>
-            <li><a href="/admin/pduList">商品管理</a></li>
-            <li class="active"><a href="">商品发布</a></li>
-            <li><a href="/admin/signOut">退出</a></li>
-        </ul>
-    </div>
+    <jsp:include page="/page/includes/adminNav.jsp">
+        <jsp:param name="index" value="3"/>
+    </jsp:include>
     <div style="float: left;width: 85%;">
-        <div style="height: 50px;background-color: #cccccc;width: 100%; margin-bottom: 40px;">
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-4" style="height: 100%; text-align: center; line-height: 50px;">
-                    <b>商品发布</b>
-                </div>
-                <div class="col-sm-2 col-sm-offset-2" style="height: 100%; text-align: center; line-height: 50px;">
-                    用户名：${sessionScope.adminName}
-                </div>
-            </div>
-
-        </div>
+        <jsp:include page="/page/includes/adminTop.jsp">
+            <jsp:param name="topname" value="商品发布"/>
+        </jsp:include>
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
                 <c:if test="${m!=null}">
@@ -48,12 +34,10 @@
                             ${param.msg.equals("200")?"发布成功":"发布失败"}
                     </div>
                 </c:if>
-
             </div>
         </div>
         <div class="col-sm-10 col-sm-offset-1">
             <form class="form-horizontal" role="form" action="/admin/product/add" method="post" enctype="multipart/form-data">
-
                 <div class="form-group">
                     <label for="select">商品类别</label>
                     <select class="form-control" id="select" name="cid">
@@ -81,13 +65,7 @@
                 <button type="submit" class="btn btn-info">提交</button>
             </form>
         </div>
-
     </div>
-
 </div>
-
-
-<script src="/js/jquery-3.4.1.min.js "></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

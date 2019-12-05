@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>用户登录</title>
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    <jsp:include page="/page/includes/head.jsp"/>
     <style>
         #body{
             border: #0f0f0f solid 1px;
@@ -65,10 +65,5 @@
         </div>
     </form>
 </div>
-
-
-
-<script src="../../js/jquery-3.4.1.min.js "></script>
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

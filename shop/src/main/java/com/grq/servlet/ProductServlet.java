@@ -2,7 +2,7 @@ package com.grq.servlet;
 
 import com.grq.bean.Product;
 import com.grq.service.ProductService;
-import com.grq.util.StaticString;
+import com.grq.util.ReadConfig;
 import com.mysql.cj.util.StringUtils;
 
 import javax.servlet.ServletException;
@@ -29,7 +29,7 @@ public class ProductServlet extends HttpServlet {
         if(p==null){
             resp.sendRedirect("/");
         }else{
-            p.setPimg(StaticString.IMG_PATH+p.getPimg());
+            p.setPimg(ReadConfig.img_path+p.getPimg());
             p.setDescribe(p.getDescribe().trim().replaceAll("\r\n", " "));
             req.setAttribute("product",p);
             req.getRequestDispatcher("/page/product.jsp").forward(req,resp);

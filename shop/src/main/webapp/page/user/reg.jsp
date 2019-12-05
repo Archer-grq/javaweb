@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>注册</title>
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    <jsp:include page="/page/includes/head.jsp"/>
     <style>
 
         #body{
@@ -61,9 +61,5 @@
     </form>
 </div>
 
-
-
-<script src="../../js/jquery-3.4.1.min.js "></script>
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -2,13 +2,14 @@ package com.grq.servlet.admin;
 
 import com.grq.bean.dto.PduWithC;
 import com.grq.service.ProductService;
-import com.grq.util.StaticString;
+import com.grq.util.ReadConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ProductInfoServlet extends HttpServlet {
         List<PduWithC> productList = productService.showPdus();
 
         for (PduWithC p : productList) {
-            p.setPimg(StaticString.IMG_PATH+p.getPimg());
+            p.setPimg(ReadConfig.server_upload_img_path+ReadConfig.separator +p.getPimg());
             p.setDescribe(p.getDescribe().trim().replaceAll("\r\n", " "));
         }
         req.setAttribute("pduList",productList);
