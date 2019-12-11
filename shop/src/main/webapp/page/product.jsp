@@ -2,11 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>商城</title>
-    <jsp:include page="/page/includes/head.jsp"/>
+    <title>商品</title>
+    <jsp:include page="/page/include/css.jsp"/>
+    <link rel="stylesheet" href="/static/css/index.css">
 </head>
-<body>
-<jsp:include page="/page/includes/top.jsp"/>
+<body class="home">
+<jsp:include page="/page/include/header.jsp"/>
+
 
 <div class="container">
     <c:if test="${msg!=null}">
@@ -15,7 +17,7 @@
                     aria-hidden="true">
                 &times;
             </button>
-           ${msg}
+                ${msg}
         </div>
     </c:if>
 </div>
@@ -25,9 +27,6 @@
         <div class="col-sm-5">
             <img src="${product.pimg}" width="100%" style="padding:20px;border: 1px solid #c8cbcf" alt="1">
             <p><h3>${product.pname}</h3></p>
-            <a class="iconc"><span class="glyphicon glyphicon-heart"><i>收藏</i></span></a>
-            <a class="iconc"><span class="glyphicon glyphicon-share-alt"><i>分享</i></span></a>
-            <a class="iconc"><span class="glyphicon glyphicon-sort"><i>对比</i></span></a>
         </div>
         <div class="col-sm-7" style="padding: 20px">
             <form action="/user/shopcar" method="post">
@@ -58,6 +57,7 @@
     </div>
 </div>
 
-
+<jsp:include page="/page/include/footer.jsp"/>
+<jsp:include page="/page/include/js.jsp"/>
 </body>
 </html>

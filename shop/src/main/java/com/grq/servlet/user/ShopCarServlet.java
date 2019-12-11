@@ -2,8 +2,10 @@ package com.grq.servlet.user;
 
 import com.grq.bean.BaseResult;
 import com.grq.bean.ShopCar;
+import com.grq.bean.dto.SC;
 import com.grq.bean.dto.SCWithP;
 import com.grq.service.ShopCarService;
+import com.grq.util.ReadConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,9 +26,10 @@ public class ShopCarServlet extends HttpServlet {
         HttpSession session=req.getSession();
         Integer userId = (Integer)session.getAttribute("userId");
 
-        List<SCWithP> list = shopCarService.getSCPByUid(userId);
+        List<SC> list = shopCarService.getSCAll(userId);
         double totalMoney=0;
-        for(SCWithP scWithP :list){
+        for(SC scWithP :list){
+            scWithP.setPimg(ReadConfig.server_upload_img_path+ReadConfig.separator+scWithP.getPimg());
             totalMoney+=scWithP.getNum()* scWithP.getPvalue();
         }
         req.setAttribute("list",list);

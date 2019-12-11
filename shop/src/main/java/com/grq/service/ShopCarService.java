@@ -2,6 +2,7 @@ package com.grq.service;
 
 import com.grq.bean.BaseResult;
 import com.grq.bean.ShopCar;
+import com.grq.bean.dto.SC;
 import com.grq.dao.ShopCarDao;
 import com.grq.bean.dto.SCWithP;
 
@@ -40,6 +41,9 @@ public class ShopCarService{
         return baseResult;
     }
 
+    public List<SC> getSCAll(int uid){
+        return shopCarDao.getSCAll(uid);
+    }
    
     public BaseResult<ShopCar> deleteById(int id) {
         int i = shopCarDao.deleteById(id);

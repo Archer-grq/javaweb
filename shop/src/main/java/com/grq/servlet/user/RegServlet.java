@@ -19,7 +19,7 @@ public class RegServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/page/user/reg.jsp").forward(req,resp);
+        req.getRequestDispatcher("/page/user/login.jsp").forward(req,resp);
     }
 
     @Override
@@ -38,13 +38,13 @@ public class RegServlet extends HttpServlet {
         if(StringUtils.isNullOrEmpty(username)||StringUtils.isNullOrEmpty(password)||StringUtils.isNullOrEmpty(password1)){
 
             req.setAttribute("message","账号或密码格式不正确");
-            req.getRequestDispatcher("/page/user/reg.jsp").forward(req,resp);
+            req.getRequestDispatcher("/page/user/login.jsp").forward(req,resp);
         }else {
 
             if(!password.equals(password1)){
                 //两次密码不一致
                 req.setAttribute("message","两次密码不一致");
-                req.getRequestDispatcher("/page/user/reg.jsp").forward(req,resp);
+                req.getRequestDispatcher("/page/user/login.jsp").forward(req,resp);
             }else {
                 BaseResult<User> baseResult=userService.userReg(username,password);
                 req.setAttribute("message",baseResult.getMessage());

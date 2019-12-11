@@ -1,6 +1,7 @@
 package com.grq.dao;
 
 import com.grq.bean.ShopCar;
+import com.grq.bean.dto.SC;
 import com.grq.dao.ShopCarDao;
 import com.grq.bean.dto.SCWithP;
 import com.grq.util.JdbcUtil;
@@ -47,7 +48,12 @@ public class ShopCarDao{
                 , SCWithP.class);
     }
 
-     
+    public List<SC>  getSCAll(int uid){
+        return JdbcUtil.select("SELECT s.id AS id,s.pnum AS num,s.uid AS uid, s.pid AS pid,p.pimg As pimg,p.pname As pname ,p.pvalue AS pvalue FROM `shopcar` AS s LEFT JOIN product AS p ON s.pid=p.id WHERE s.uid=?"
+                , new Object[]{uid}
+                , SC.class);
+    }
+
     public int checkIsHave(int uid, int pid) {
 
         List<ShopCar> select = JdbcUtil.select("select * from shopcar where uid =? and pid =?", new Object[]{uid, pid}, ShopCar.class);

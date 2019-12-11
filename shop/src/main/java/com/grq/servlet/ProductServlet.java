@@ -29,7 +29,7 @@ public class ProductServlet extends HttpServlet {
         if(p==null){
             resp.sendRedirect("/");
         }else{
-            p.setPimg(ReadConfig.img_path+p.getPimg());
+            p.setPimg(ReadConfig.img_path+ReadConfig.separator+p.getPimg());
             p.setDescribe(p.getDescribe().trim().replaceAll("\r\n", " "));
             req.setAttribute("product",p);
             req.getRequestDispatcher("/page/product.jsp").forward(req,resp);

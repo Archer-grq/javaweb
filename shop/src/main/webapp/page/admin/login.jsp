@@ -2,59 +2,71 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>admin登录</title>
-    <jsp:include page="/page/includes/head.jsp"/>
-    <style>
-        #body{
-            border: #0f0f0f solid 1px;
-            width:500px;
-            padding:50px;
-            margin:100px auto;
-            border-radius: 10px;
-        }
-    </style>
+    <title>商城</title>
+    <jsp:include page="/page/include/css.jsp"/>
 </head>
-<body>
-<div class="container" id="body">
-    <div class="row">
-        <h1 class="text-center">欢迎管理员登录</h1>
+<body class="home">
+<jsp:include page="/page/include/simpleHeader.jsp"/>
+<div class="main-content main-content-login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-trail breadcrumbs">
+                    <ul class="trail-items breadcrumb">
+                        <li class="trail-item trail-begin">
+                            <a href="/">商城</a>
+                        </li>
+                        <li class="trail-item trail-end active">
+                            管理员
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <c:if test="${message!=null}">
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">
+                        &times;
+                    </button>
+                        ${message}
+                </div>
+            </c:if>
+            <div class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="site-main">
+                    <h3 class="custom_blog_title">
+                        管理员登录
+                    </h3>
+                    <div class="customer_login">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="login-item">
+                                    <h5 class="title-login">登录到后台管理系统</h5>
+                                    <form class="login" action="/admin/login" method="post">
+                                        <p class="form-row form-row-wide">
+                                            <label class="text">用户名</label>
+                                            <input title="username" type="text" name="name" value="admin" class="input-text">
+                                        </p>
+                                        <p class="form-row form-row-wide">
+                                            <label class="text">密码</label>
+                                            <input title="password" type="password" name="pwd" value="admin" class="input-text">
+                                        </p>
+                                        <p class="form-row">
+                                            <input type="submit" class="button-submit" value="登录">
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <c:if test="${message!=null}">
-            <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert"
-                        aria-hidden="true">
-                    &times;
-                </button>
-                    ${message}
-            </div>
-        </c:if>
-    </div>
-    <form class="form-horizontal" role="form" action="/admin/login" method="post">
-        <div class="form-group">
-            <label for="name" class="col-sm-3 control-label">账号</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="name" name="name" placeholder="请输入用户名">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="password" class="col-sm-3 control-label">密码</label>
-            <div class="col-sm-8">
-                <input type="password" class="form-control" id="password" name="pwd" placeholder="请输入密码">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-2">
-                <a type="button" href="/" class="btn btn-default">返回首页</a>
-            </div>
-            <div class="col-sm-offset-4 col-sm-2">
-                <button type="submit" class="btn btn-info">登录</button>
-            </div>
-            <div class=" col-sm-2">
-                <a type="button" href="" class="btn btn-default">注册</a>
-            </div>
-        </div>
-    </form>
 </div>
+<jsp:include page="/page/include/footer.jsp"/>
+<jsp:include page="/page/include/js.jsp"/>
 </body>
 </html>
